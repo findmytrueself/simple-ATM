@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { dummyData } from '../static/dummyData';
-import { useDispatch } from 'react-redux';
-
+import { useSelector } from 'react-redux';
+import useAccessCard from '../hooks/useAccessCard';
 const Input = () => {
-  const dispatch = useDispatch();
+  const selector = useSelector((state) => state.card[0]);
+  const accessCard = useAccessCard();
+  console.log(selector);
   const [cardFront, setCardFront] = useState('');
   const [cardBack, setCardBack] = useState('');
   const [password, setPassword] = useState('');
@@ -28,20 +30,17 @@ const Input = () => {
     dummyData.map((el) => {
       const cardNum = Object.keys(el.cardPIN);
       return cardNum.map((ele) =>
-        ele === submitCardNum
-          ? dispatch({
-              type: 'accessCard',
-              payload: { submitCardNum, password },
-            })
-          : null,
+        ele === submitCardNum ? accessCard({ submitCardNum, password }) : null,
       );
     });
+    if (selector.length === 1) {
+    }
   };
   return (
     <>
       {!isPIN ? (
         <div>
-          <h1>카드번호를 입력해주세요</h1>
+          <h1>Insert card & Click button</h1>
           <span>
             <input type="text" onChange={(e) => cardFrontInput(e)} />
             <span>-</span>
@@ -51,7 +50,7 @@ const Input = () => {
         </div>
       ) : (
         <div>
-          <h1>비밀번호를 입력해주세요</h1>
+          <h1>Input PIN number & Click button</h1>
           <span>
             <input
               type="password"
