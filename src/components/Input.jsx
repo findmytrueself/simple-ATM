@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { dummyData } from '../static/dummyData';
 import { useSelector } from 'react-redux';
 import useAccessCard from '../hooks/useAccessCard';
+import { useNavigate } from 'react-router-dom';
 const Input = () => {
   const selector = useSelector((state) => state.card[0]);
+  const navigate = useNavigate();
   const accessCard = useAccessCard();
   console.log(selector);
   const [cardFront, setCardFront] = useState('');
@@ -29,12 +31,14 @@ const Input = () => {
     const submitCardNum = `${cardFront}-${cardBack}`;
     dummyData.map((el) => {
       const cardNum = Object.keys(el.cardPIN);
-      return cardNum.map((ele) =>
-        ele === submitCardNum ? accessCard({ submitCardNum, password }) : null,
-      );
+      const cardPIN = Object.values(el.cardPIN);
+      return cardNum.forEach((ele, i) => {
+        if (ele === submitCardNum && cardPIN[i] === password) {
+          accessCard({ submitCardNum, password });
+          navigate('/account');
+        }
+      });
     });
-    if (selector.length === 1) {
-    }
   };
   return (
     <>
