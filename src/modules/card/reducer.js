@@ -1,9 +1,14 @@
 import { dummyData } from '../../static/dummyData';
 const initialState = dummyData;
 console.log(initialState);
-const reducer = (state = 0, action) => {
-  console.log(action);
+const reducer = (state = dummyData, action) => {
   switch (action.type) {
+    case 'accessCard':
+      return state.filter((el) =>
+        el.cardPIN[action.payload.submitCardNum] === action.payload.password
+          ? el
+          : null,
+      );
     case 'deposit':
       return state + action.payload;
     case 'withdraw':
