@@ -11,6 +11,4 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({ card });
 
-// export default rootReducer;
-
 export default persistReducer(persistConfig, rootReducer);

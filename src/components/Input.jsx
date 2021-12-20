@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { dummyData } from '../static/dummyData';
 import useAccessCard from '../hooks/useAccessCard';
 import { useNavigate } from 'react-router-dom';
+import useLogout from '../hooks/useLogout';
 const InputCard = () => {
   const navigate = useNavigate();
   const accessCard = useAccessCard();
+  const logout = useLogout();
   const [cardFront, setCardFront] = useState('');
   const [cardBack, setCardBack] = useState('');
   const [password, setPassword] = useState('');
@@ -42,6 +44,7 @@ const InputCard = () => {
       {!isPIN ? (
         <div>
           <h1>Insert Card & Click button</h1>
+          <button onClick={() => logout()}>초기화버튼</button>
           <span>
             <input type="text" onChange={(e) => cardFrontInput(e)} />
             <span>-</span>
