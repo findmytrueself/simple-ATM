@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { dummyData } from '../static/dummyData';
-import { useSelector } from 'react-redux';
 import useAccessCard from '../hooks/useAccessCard';
 import { useNavigate } from 'react-router-dom';
-const Input = () => {
-  const selector = useSelector((state) => state.card[0]);
+const InputCard = () => {
   const navigate = useNavigate();
   const accessCard = useAccessCard();
-  console.log(selector);
   const [cardFront, setCardFront] = useState('');
   const [cardBack, setCardBack] = useState('');
   const [password, setPassword] = useState('');
@@ -44,7 +41,7 @@ const Input = () => {
     <>
       {!isPIN ? (
         <div>
-          <h1>Insert card & Click button</h1>
+          <h1>Insert Card & Click button</h1>
           <span>
             <input type="text" onChange={(e) => cardFrontInput(e)} />
             <span>-</span>
@@ -68,4 +65,4 @@ const Input = () => {
   );
 };
 
-export default Input;
+export default InputCard;

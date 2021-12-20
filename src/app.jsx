@@ -1,13 +1,13 @@
 import React from 'react';
-import Input from './components/Input';
-import Account from './components/Account';
+import InputCard from './components/Input';
 import { Routes, Route } from 'react-router-dom';
+import AccountList from './components/Account/AccountList';
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Input />} />
-        <Route path="/account/*" element={<Account />} />
+        <Route path="/" element={<InputCard />} />
+        <Route path="/account/*" element={<AccountList />} />
       </Routes>
     </>
   );
