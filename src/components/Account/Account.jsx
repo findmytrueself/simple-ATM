@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import useDeposit from '../../hooks/useDeposit';
