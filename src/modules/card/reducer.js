@@ -31,6 +31,11 @@ const reducer = (state = db, action) => {
       });
       const deposit = state.slice();
       deposit[0].accounts = depositAccounts;
+      dummyData.forEach((el) => {
+        if (el.name === deposit[0].name) {
+          return dummyData.map((el) => Object.assign({}, { ...deposit[0] }));
+        }
+      });
       return state.map((el) => Object.assign({}, { ...deposit[0] }));
     case WITHDRAW_ACCOUNT:
       const withdrawAccounts = state[0].accounts.map((card) => {
@@ -42,6 +47,11 @@ const reducer = (state = db, action) => {
       });
       const withdraw = state.slice();
       withdraw[0].accounts = withdrawAccounts;
+      dummyData.forEach((el) => {
+        if (el.name === withdraw[0].name) {
+          return dummyData.map((el) => Object.assign({}, { ...withdraw[0] }));
+        }
+      });
       return state.map((el) => Object.assign({}, { ...withdraw[0] }));
     default:
       return state;

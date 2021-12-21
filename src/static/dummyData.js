@@ -25,7 +25,7 @@ export const dummyData = [
     cardPIN: { '111-2222': '2222', '333-4444': '4444', '333-9929': '9929' },
     accounts: [
       { bankname: 'Blockchain bank', cardnum: '111-2222', balance: 10000 },
-      { bankname: 'isGood bank', cardnum: '333-4444', balance: 30000 },
+      { bankname: 'isood bank', cardnum: '333-4444', balance: 30000 },
       { bankname: 'downbit', cardnum: '333-9929', balance: 50000 },
     ],
   },
