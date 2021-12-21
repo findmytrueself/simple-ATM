@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import useDeposit from '../../hooks/useDeposit';
 import useLogout from '../../hooks/useLogout';
+import useWithdraw from '../../hooks/useWithdraw';
 const Account = ({ bankname, cardnum, balance }) => {
   const [isSelect, setIsSelect] = useState(false);
   const [isDeposit, setIsDeposit] = useState(false);
@@ -12,6 +13,7 @@ const Account = ({ bankname, cardnum, balance }) => {
   const [withdraw, setWithdraw] = useState(0);
   const navigate = useNavigate();
   const depositDispatch = useDeposit();
+  const withdrawDispatch = useWithdraw();
   const logout = useLogout();
   const logoutHandler = () => {
     logout();
@@ -21,7 +23,7 @@ const Account = ({ bankname, cardnum, balance }) => {
     depositDispatch({ bankname, deposit });
   };
   const withdrawHandler = () => {
-    console.log('withdraw', { bankname, withdraw });
+    withdrawDispatch({ bankname, withdraw });
   };
   return (
     <>
@@ -47,6 +49,7 @@ const Account = ({ bankname, cardnum, balance }) => {
                     onChange={(e) => setDeposit(e.target.value)}
                   />
                   <button onClick={depositHandler}>Deposit</button>
+                  <button onClick={() => setIsDeposit(false)}>cancel</button>
                 </div>
               )}
             </div>
@@ -63,6 +66,7 @@ const Account = ({ bankname, cardnum, balance }) => {
                       onChange={(e) => setWithdraw(e.target.value)}
                     />
                     <button onClick={withdrawHandler}>Withdraw</button>
+                    <button onClick={() => setIsWithdraw(false)}>cancel</button>
                   </div>
                 )}
               </div>

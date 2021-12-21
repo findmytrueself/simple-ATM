@@ -6,39 +6,43 @@ import {
   WITHDRAW_ACCOUNT,
 } from '.';
 import { dummyData } from '../../static/dummyData';
-const initialState = dummyData;
+const db = dummyData;
 // reducer
-const reducer = (state = initialState, action) => {
+const reducer = (state = db, action) => {
   switch (action.type) {
     case ACCESS_CARD:
-      return state.filter((el) =>
-        el.cardPIN[action.payload.submitCardNum] === action.payload.password
-          ? el
+      return state.filter((card) =>
+        card.cardPIN[action.payload.submitCardNum] === action.payload.password
+          ? card
           : null,
       );
     case LOGOUT_CARD:
-      return (state = initialState);
+      return (state = db);
     case SELECT_ACCOUNT:
       return state;
+
     case DEPOSIT_ACCOUNT:
-      console.log(action.payload, 'payload');
-      console.log(state);
-      const temp = state[0].accounts.map((el) => {
-        if (el.bankname === action.payload.bankname) {
-          const updateBalance = el.balance + +action.payload.deposit;
-          return Object.assign({}, { ...el }, { balance: updateBalance });
+      const depositAccounts = state[0].accounts.map((card) => {
+        if (card.bankname === action.payload.bankname) {
+          const updateBalance = card.balance + +action.payload.deposit;
+          return Object.assign({}, { ...card }, { balance: updateBalance });
         }
-        return el;
+        return card;
       });
-    //   return state.map((el) => {
-    //     if (el.accounts.bankname === action.payload.bankname) {
-    //       el.accounts.balance += +action.payload.deposit;
-    //       //   return Object.assign({}, { ...el });
-    //     }
-    //     return el;
-    //   });
+      const deposit = state.slice();
+      deposit[0].accounts = depositAccounts;
+      return state.map((el) => Object.assign({}, { ...deposit[0] }));
     case WITHDRAW_ACCOUNT:
-      return state;
+      const withdrawAccounts = state[0].accounts.map((card) => {
+        if (card.bankname === action.payload.bankname) {
+          const updateBalance = card.balance - +action.payload.withdraw;
+          return Object.assign({}, { ...card }, { balance: updateBalance });
+        }
+        return card;
+      });
+      const withdraw = state.slice();
+      withdraw[0].accounts = withdrawAccounts;
+      return state.map((el) => Object.assign({}, { ...withdraw[0] }));
     default:
       return state;
   }

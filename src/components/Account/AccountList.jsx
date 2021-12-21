@@ -5,8 +5,9 @@ const AccountList = () => {
   const selector = useSelector((state) => state.card[0]);
   return (
     <>
-      <h1>Select Account</h1>
-      {selector.accounts.map((account) => (
+      <h1>Hello, {selector.name}</h1>
+      <h2>Select Account</h2>
+      {selector.accounts?.map((account) => (
         <Account
           key={account.bankname}
           bankname={account.bankname}

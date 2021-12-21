@@ -1,4 +1,11 @@
-문제 발생
+/SIMPLE-ATM/ -> CLI: 'yarn start' -> localhost:3000
 
-1. 리듀서의 초기값을 dummydata값들을 주었음에도 불구하고, redux-persist에 의해 값이 초기화되지않는다.
-2.
+URI : localhost:3000/
+
+1. card insert(input cardNum -> check in db(/static/dummydata))
+2. if there is cardNum in db -> user can input PIN & if PIN correct redirect to /account
+
+URI : localhost:3000/account
+
+3. if correct PIN -> select accounts (all accounts are connected that likes Toss app)
+4. if select account user can do transaction deposit and withdraw
