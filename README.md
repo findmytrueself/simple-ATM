@@ -11,12 +11,14 @@
 - 데이터를 어떻게 할까 고민하다가 더미데이터를 직접 디자인했다.
   - Don't need to call REST API so I made dummydata by myself
 
-### URI : localhost:3000/
+---
+
+### localhost:3000/
 
 1. card insert(input cardNum -> check in db(/static/dummydata))
-2. if there is correct cardNum in db -> user can input PIN & if PIN correct redirect to /account
+2. if there is correct cardNum in db -> user can input PIN & if PIN is correct ? redirect to /account
 
-### URI : localhost:3000/account
+### localhost:3000/account
 
 3. if correct PIN -> select accounts (all accounts are connected likes Toss app)
 4. if select account, user can deposit and withdraw
@@ -25,10 +27,11 @@
 
 ### components
 
-- Account
-  - AccountList
+- APP.jsx
+  - Input.jsx
   - Account
-- Input
+    - AccountList.jsx
+    - Account.jsx
 
 ---
 
@@ -43,7 +46,7 @@
 
 ### modules
 
-- all redux modules in here
+- all Redux modules in here
   - configureStore(applymiddleware: thunk, reduxdevTools)
   - combineReducer
   - Card
